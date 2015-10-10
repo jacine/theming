@@ -170,3 +170,72 @@ regions[footer_fourthcolumn] = Footer fourth column
 **Figure 15–13**. Populated footer regions in the Bartik theme.
 
 ## Exercise: Creating New Regions
+
+The creation of a new region is a two-step process. Using the example in Figure 15–12, here's the process of creating the new Banner Ad and Navigation regions.
+
+
+**Step 1:** Define regions in the `dgd7.info` file. Begin by adding the code for your new regions to the defaults you started with in Listing 15–3, plus the definition of the banner_ad and navigation regions to your `dgd7.info` file.
+
+```ini
+; DEFAULT REGIONS
+regions[page_top] = Page Top
+regions[header] = Header
+regions[highlight] = Highlight
+regions[help] = Help
+regions[content] = Content
+regions[sidebar_first] = Sidebar First
+regions[sidebar_second] = Sidebar Second
+regions[footer] = Footer
+regions[page_bottom] = Page Bottom
+
+; CUSTOM REGIONS
+regions[banner_ad] = Banner Ad
+regions[navigation] = Navigation
+```
+
+**Step 2:** Print the regions in the `page.tpl.php` template file. Once you clear your site caches, you'll be able to see and populate the new regions on the Blocks administration page at `admin/structure/block`. In order to get them to display on the page, you'll need to override the `page.tpl.php` file in your theme and print the new regions.
+
+Navigate to the `modules/system` directory, copy the `page.tpl.php` file and paste it into the `sites/all/themes/dgd7` directory you created earlier.
+
+Open the `page.tpl.php` file in the theme and scroll down to the <div id="page-wrapper"> and paste the code to print the region below it, and above the <div id="header">.
+
+```html
+<div id="page-wrapper">
+  <div id="page">
+    <?php print render($page['banner_ad']); ?>
+    <div id="header">
+      <div class="section clearfix">
+```
+
+Remove the default markup for the `$main_menu` and replace it with the region code for your new navigation region.
+
+Remove this code:
+
+```html
+<?php if ($main_menu || $secondary_menu): ?>
+  <div id="navigation">
+    <div class="section">
+      <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
+      <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Secondary menu'))); ?>
+    </div>
+  </div> <!-- /.section, /#navigation -->
+<?php endif; ?>
+```
+
+Replace with this code:
+
+```html
+<?php print render($page['navigation']); ?>
+```
+
+**Step 3:** Technically you're finished, but let's add some content to illustrate what you've done.
+
+Add a new custom block for the Banner Ad code. Title the block "Banner Ad" and add the following code to fake the appearance of an ad banner in the Block body (be sure to select the Full HTML text format). Then, select the Banner Ad region for the region settings and save it.
+
+```html
+<img style="width: 728px; height: 90px; border: solid 1px #000;" alt="728 x 90 Banner Ad" src="image.png">
+```
+
+Go back to the `admin/structure/block` page. Find the Main Menu block and place it inside the Navigation region and click Save blocks.
+
+You've just added and populated two new custom regions!
