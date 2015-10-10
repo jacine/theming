@@ -13,5 +13,6 @@
    * [Defining Theme Metadata (.info Files)](basic/info.md)
        * Exercise: Create Your First Theme
    * [Working with Regions](basic/regions.md)
+       * Default Regions
 * [Advanced Theming](advanced/README.md)
 
