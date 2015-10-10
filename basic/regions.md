@@ -113,9 +113,33 @@ The Dashboard module's Dashboard Main and Dashboard Sidebar regions are an examp
 
 ## Regions and Your Theme
 
+Getting started with your theme regions requires taking a good look at design requirements as well as planning for the unexpected. There are many things to consider, including how site administrators will need to work with blocks and regions, what types of content you have, and how regions play a part in your general layout strategy. As discussed earlier, the default regions are a great starting point. We recommend that you begin defining the defaults in your theme's `.info` file and tweaking from there, as shown in Listing 15–5.
 
+**Listing 15–5**. Drupal's Default Regions
 
-## Using Regions vs. Hard-coding Variables in Template Files
+```ini
+regions[page_top] = Page Top
+regions[header] = Header
+regions[highlight] = Highlight
+regions[help] = Help
+regions[content] = Content
+regions[sidebar_first] = Sidebar First
+regions[sidebar_second] = Sidebar Second
+regions[footer] = Footer
+regions[page_bottom] = Page Bottom
+```
+
+<blockquote><b>Tip</b> In addition to defining regions in your theme's <code>.info</code> file, you'll need to print them in the appropriate template file. The <code>page_top</code> and <code>page_bottom</code> regions print in the <code>html.tpl.php</code> template and the rest print in <code>page.tpl.php</code>. Printing regions and template files are discussed in more detail later in the chapter.
+
+# Using Regions vs. Hard-coding Variables in Template Files    
+
+When deciding whether or not to use regions in your theme, it's useful to consider the content that will be included in each section, how likely the position of the content is to change, and who needs to be able to change it. Blocks are flexible by nature and were designed to allow site administrators to easily move them around. This can cause problems if blocks are expected to be in a certain region and then moved or reordered.
+
+When working on a site alone, or when only a few trusted individuals have control over the configuration of blocks, this is probably not something you need worry about. Alternatively, in cases where less trusted individuals have access and can potentially cause problems, taking extra measures to identify potential problem areas and doing what you can to prevent them is well worth it. For example, headers and footers are especially prone to this sort of problem. They usually have a tightly defined design and CSS to match. When blocks are moved around inside these regions, especially highly styled content such as the main menu navigation, things can go wrong quickly in the wrong hands. Sometimes defining an additional region, even if its purpose is to hold only one block, is a safer option compared with placing the block in the header region with other blocks. This will help ensure it is always printed in the right location and reduce the chance of user error. If site administrators do not need control over positioning, it may be best to print using a hard-coded variable in `page.tpl.php`, where it can't be affected by actions taken in the blocks interface.
+
+As a general rule, consider using a region when content needs to be moved between regions or rearranged in the Blocks interface. When content doesn't need to be controlled via the Blocks interface, and it is risky for it to be there, consider hard-coding it in template files so it can't be affected by actions taken in the Blocks interface.
+
+<blockquote><b>Tip:</b> The main menu (<code>$main_menu</code>) and secondary menu (<code>$secondary_menu</code>), which are located in <code>page.tpl.php</code>, are examples of hard-coded variables.
 
 ## Layout Strategies
 
