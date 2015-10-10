@@ -1,6 +1,6 @@
 # Summary
 
 * [Introduction](README.md)
-* [Theming](theming/README.md)
+* [Basic](basic/README.md)
 * [Advanced Theming](advanced/README.md)
 
