@@ -1,6 +1,7 @@
 {
     "plugins": [
-        "prism"
+        "prism",
+        "-highlight"
     ],
     "pluginsConfig": {}
 }
