@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [Basic](basic/README.md)
+* [Theming](basic/README.md)
    * [The Core Themes Directory](basic/core-themes.md)
        * Core Themes
        * Theme Engines
