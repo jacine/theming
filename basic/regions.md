@@ -106,7 +106,14 @@ Listing 15-4. The Contents of html.tpl.php, Highlighting the Placement of the pa
 
 ## Module-Specific Regions
 
+The Dashboard module's Dashboard Main and Dashboard Sidebar regions are an example of regions created by a module. These regions are nontraditional in the sense that they can't be administered via the Blocks administration page, and the theme does not control defining or printing them. The Dashboard module defines them programmatically using `hook_system_info_alter()` and takes care of displaying them on the administrative Dashboard located at `/admin`. The Dashboard module allows you to drag and drop available blocks to those regions to create a dashboard for site administrators (see Figure 15–11).
+
+![Screenshot of Dashboard module in edit mode, showing its use of custom regions](http://themery.com/sites/default/files/figure-15-11.png)
+**Figure 15–11**. Administrative Dashboard in edit mode. 
+
 ## Regions and Your Theme
+
+
 
 ## Using Regions vs. Hard-coding Variables in Template Files
 
