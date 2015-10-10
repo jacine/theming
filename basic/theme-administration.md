@@ -66,3 +66,16 @@ These are simple one-level menus output using the `theme_links()` function (whic
 
 ### Custom Theme Settings
 Custom theme settings are similar to the global theme settings and can be provided by themes and modules. An example of custom theme settings can be found in the Garland theme in the `garland.info` file. It creates a setting called `garland_width` that can be set to fixed or fluid. The Shortcut module also provides a setting to display the "Add or remove shortcut link" used in the Seven theme to provide the icon you see in the Overlay next to the title. To learn how to create custom theme settings for your theme, visit http://drupal.org/node/177868.
+
+## Installing a New Theme    
+
+Drupal scans its theme directories for available themes, so it's important that you place your themes in the right place for Drupal to recognize them. You might also be tempted to add themes to Drupal's `/themes` directory, but technically this is considered "hacking core" and should be avoided. After downloading and unpacking your theme, choose one of the following directories in which to place the theme. Using one of these directories will help ensure that any updates you make to Drupal itself will not result in accidentally overwriting your theme.
+
+<dl>
+  <dt>sites/all/themes</dt>
+  <dd>Use this directory when you want the theme to be available to all sites in your Drupal installation.</dd>
+  <dt>sites/sitename/themes</dt>
+  <dd>Use this directory when you only want the theme available to a specific site in your multisite Drupal installation.</dd>
+</dl>
+
+You may also use the theme installer to download and install contributed themes by clicking the Install new theme link at the top of the Appearance page. This will bring you to a form where you can enter the link to the project download's tarball location and click Install. The theme installer will automatically download your theme and place it in the `sites/all/themes` directory. Once completed, you can enable the theme as usual on the `admin/appearance` page.
