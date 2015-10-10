@@ -158,7 +158,7 @@ With the exception of the core property, all of the above can be seen in the use
 
 Taking into account what you have learned so far, create a custom theme.
 
-Start by creating a new folder in `sites/all/themes` called `dgd7`.
+Start by creating a new folder in `sites/all/themes` named `dgd7`.
 
 Inside the `dgd7` folder, create a new file named `dgd7.info` and add the following code inside it:
 
