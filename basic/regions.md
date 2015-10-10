@@ -139,7 +139,7 @@ When working on a site alone, or when only a few trusted individuals have contro
 
 As a general rule, consider using a region when content needs to be moved between regions or rearranged in the Blocks interface. When content doesn't need to be controlled via the Blocks interface, and it is risky for it to be there, consider hard-coding it in template files so it can't be affected by actions taken in the Blocks interface.
 
-<blockquote><b>Tip:</b> The main menu (<code>$main_menu</code>) and secondary menu (<code>$secondary_menu</code>), which are located in <code>page.tpl.php</code>, are examples of hard-coded variables.
+<blockquote><b>Tip:</b> The main menu (<code>$main_menu</code>) and secondary menu (<code>$secondary_menu</code>), which are located in <code>page.tpl.php</code>, are examples of hard-coded variables.</blockquote>
 
 ## Layout Strategies
 
