@@ -15,5 +15,6 @@
    * [Working with Regions](basic/regions.md)
        * Default Regions
        * Hidden Regions
+       * Module-Specific Regions
 * [Advanced Theming](advanced/README.md)
 
