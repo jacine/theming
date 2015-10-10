@@ -9,6 +9,7 @@
        * Enabling and Setting a Default Theme
        * Administrative Theme
        * Global Theme Settings
+       * Installing a New Theme
    * [Defining Theme Metadata (.info Files)](basic/info.md)
 * [Advanced Theming](advanced/README.md)
 
