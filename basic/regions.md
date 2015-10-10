@@ -129,7 +129,7 @@ regions[footer] = Footer
 regions[page_bottom] = Page Bottom
 ```
 
-<blockquote><b>Tip</b> In addition to defining regions in your theme's <code>.info</code> file, you'll need to print them in the appropriate template file. The <code>page_top</code> and <code>page_bottom</code> regions print in the <code>html.tpl.php</code> template and the rest print in <code>page.tpl.php</code>. Printing regions and template files are discussed in more detail later in the chapter.
+<blockquote><b>Tip</b> In addition to defining regions in your theme's <code>.info</code> file, you'll need to print them in the appropriate template file. The <code>page_top</code> and <code>page_bottom</code> regions print in the <code>html.tpl.php</code> template and the rest print in <code>page.tpl.php</code>. Printing regions and template files are discussed in more detail later in the chapter.</blockquote>
 
 # Using Regions vs. Hard-coding Variables in Template Files    
 
