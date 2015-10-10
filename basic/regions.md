@@ -74,6 +74,36 @@ As a result, some of the Block module's functionality doesn't work as you might 
 
 ## Hidden Regions
 
+Notably missing from the options on the Blocks administration page in Figure 15–8 are the page_top and page_bottom regions. Both are hidden regions, which Drupal intentionally excludes from the user interface so that site administrators can't interact with or control their content. The main purpose of hidden regions is to act as a placeholder where modules or themes can dynamically add markup to in a structured way. Themes may declare hidden regions within .info files by using the following syntax, with each region on a separate a line:
+
+regions_hidden[] = the_region_name
+
+Both the page_top and page_bottom regions are printed in html.tpl.php (see Listing 15–4) and should not be removed or rearranged. The  page_top region, for example, is utilized by the Toolbar module to add the markup needed for the administrative toolbar shown at the top of each page when a user is logged in as a site administrator. The page_bottom region exists for modules to add any final closing markup, which specifically needs to be at the very bottom of the page. An example of this is the Google Analytics module, which adds markup to load JavaScript files that track the site visitor activity and needs to be loaded last. The page_bottom region replaces the $closure variable that was used in prior versions of Drupal.
+
+Listing 15-4. The Contents of html.tpl.php, Highlighting the Placement of the page_top and page_bottom Regions.
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
+  <head profile="<?php print $grddl_profile; ?>">
+    <?php print $head; ?>
+    <title><?php print $head_title; ?></title>
+    <?php print $styles; ?>
+    <?php print $scripts; ?>
+  </head>
+  <body class="<?php print $classes; ?>" <?php print $attributes;?>>
+    <div id="skip-link">
+      <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
+    </div>
+    <?php print $page_top; ?>
+    <?php print $page; ?>
+    <?php print $page_bottom; ?>
+  </body>
+</html>
+```
+
+<blockquote><b>Tip:</b> Drupal uses <code>hook_system_info_alter()</code> to declare the <code>page_top</code> and <code>page_bottom</code> hidden regions. For more information, see <a href="http://api.drupal.org/api/function/system_system_info_alter/7">http://api.drupal.org/api/function/system_system_info_alter/7.</a>.</blockquote>
+
 ## Module-Specific Regions
 
 ## Regions and Your Theme
