@@ -1,2 +1,5 @@
 # Theme Engines
 
+Drupal's theme directory also has an engines directory that contains a theme engine called PHPTemplate. Theme engines provide an easy way to separate themable output into template files as opposed to plain old PHP. The main benefit of using the PHPTemplate engine is that separating logic from presentation is simplified. Those who are unfamiliar with PHP can accomplish a great deal because they are able to work in template files that mainly contain markup and print variables.
+
+While other theme engines such as Smarty, XTemplate, and PHPTal may be used, PHPTemplate is Drupal’s default theme engine and is by far the most popular theme engine used by Drupal themes (and many popular contributed modules), so we will cover it in this chapter. It is also possible to write pure PHP Drupal themes. See the Chameleon theme for an example of a pure PHP theme at [http://drupal.org/project/chameleon](http://drupal.org/project/chameleon). For a full listing of available theme engines, visit [http://drupal.org/project/theme+engines](http://drupal.org/project/theme+engines).
