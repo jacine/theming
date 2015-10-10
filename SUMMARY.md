@@ -1,5 +1,5 @@
 # Summary
 
-* Theming
+* [Theming](theming/README.md)
 * Advanced Theming
 
