@@ -151,3 +151,26 @@ With the exception of the core property, all of the above can be seen in the use
 **Figure 15-7** DGD7 theme as shown on the theme listing page ``admin/appearance``.
 
 ![Screenshot of custom theme on Appearance page](http://themery.com/sites/default/files/figure-15-7.png)
+
+## Exercise
+
+### Create Your First Theme
+
+Taking into account what you have learned so far, create a custom theme.
+
+Start by creating a new folder in `sites/all/themes` called `dgd7`.
+
+Inside the `dgd7` folder, create a new file named `dgd7.info` and add the following code inside it:
+
+```ini
+name = DGD7 Theme
+description = A theme written for The Definitive Guide to Drupal 7 book website.
+core = 7.x
+```
+
+Grab the `screenshot.png` file from the chapter source code and copy it into the `dgd7` directory. This is an optional step. If the screenshot is not defined, you will see the text "No screenshot" instead.
+
+Now visit `admin/appearance` and reload the page. You should now see the theme under Disabled Themes. Click the "Enable and set default" link to begin using this theme on your site.
+
+<blockquote>
+<b>Tip</b>: You will need to clear your site caches in order for changes in `.info` files to take effect! To clear the site caches, visit the Performance page at <code>admin/config/development/performance</code>.</blockquote>
