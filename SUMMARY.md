@@ -14,5 +14,6 @@
        * Exercise: Create Your First Theme
    * [Working with Regions](basic/regions.md)
        * Default Regions
+       * Hidden Regions
 * [Advanced Theming](advanced/README.md)
 
