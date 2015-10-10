@@ -143,4 +143,30 @@ As a general rule, consider using a region when content needs to be moved betwee
 
 ## Layout Strategies
 
+The core defaults for sidebars (Sidebar First and Sidebar Second) were designed to handle multiple sidebar combinations with the help of body classes. Drupal is extremely flexible, and pages can be changed on a whim. Whether this will actually look good or not depends on how flexible and well coded the theme is. Since Drupal only prints regions that contain content, having a well planned and flexible layout is very important.
+
+For example, let's say you have a two-column layout theme where the first column contains the main content and the Sidebar First region contains a single block. If you were to set the visibility of that block to only show on the home page, the entire Sidebar First region would only print on the home page and the inside pages would print just the main column. If your layout CSS only accounts for having both of those columns on each page, instead of including CSS for both a single column and the two-column, your layout will break. While regions are fairly easy to add or modify at any given time, oversimplifying the layout in the beginning of a project may come back to bite you in the form of extra CSS work. However many sidebars your theme will have, it's generally best to account for all possible sidebar combinations (one, two, or three columns) to avoid running into problems down the line. A great way to do this easily and sustainably is to use an established base theme.
+
+There are also certain types of content that often work better in separate regions. For example, custom blocks containing advertisements and blocks that have significantly different design requirements are often easier to work with and write CSS for when they are abstracted. Figure 15–12 shows what adding a region for an ad banner and main navigation might look like.
+
+It is also important to consider how the pages will be built and who will be working with them. If your site is going to be using regions and blocks to implement more complicated designs and you want to make it easy for site administrators to use, it may make sense to predefine multiple regions to lay out smaller sections of your pages. A good example of this is the Bartik theme, which contains seven additional regions to organize blocks in the footer, as shown in Figure 15–13. The same look could be achieved by defining two regions (Footer First and Footer Second) instead and style them using CSS to float the blocks in each to the left, but Bartik's implementation, shown in Listing 15–6 and illustrated in Figure 15–13, is arguably easier to understand for those who are not interested in the inner-workings of the code and just want to use the theme.
+
+![](http://themery.com/sites/default/files/figure-15-12.png)
+**Figure 15–12**. Example of custom advertisement banner and navigation regions.
+
+**Figure 15–6**. Excerpt from Bartik Theme's `.info` File Where Its Seven Custom Regions Are Defined.
+
+```ini
+regions[triptych_first] = Triptych first
+regions[triptych_middle] = Triptych middle
+regions[triptych_last] = Triptych last
+regions[footer_firstcolumn] = Footer first column
+regions[footer_secondcolumn] = Footer second column
+regions[footer_thirdcolumn] = Footer third column
+regions[footer_fourthcolumn] = Footer fourth column
+```
+
+![](http://themery.com/sites/default/files/figure-15-13.png)
+**Figure 15–13**. Populated footer regions in the Bartik theme.
+
 ## Exercise: Creating New Regions
