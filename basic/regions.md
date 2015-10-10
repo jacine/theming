@@ -13,3 +13,17 @@ Themes have full control over defining and determining the placement of printing
 ![Screenshot of Bartik regions filled with custom blocks](http://themery.com/sites/default/files/figure-15-9.png)
 
 In addition, themes may also use regions for less obvious purposes in combination with JavaScript or jQuery. Common use cases for regions include containing modal or hidden content to enhance the user interface or embedding blocks into node content.
+
+## Default Regions
+
+## Hidden Regions
+
+## Module-Specific Regions
+
+## Regions and Your Theme
+
+## Using Regions vs. Hard-coding Variables in Template Files
+
+## Layout Strategies
+
+## Exercise: Creating New Regions
