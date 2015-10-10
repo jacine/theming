@@ -18,5 +18,6 @@
        * Module-Specific Regions
        * Regions and Your Theme
        * Using Regions vs. Hard-coding Variables in Template Files
+       * Layout Strategies
 * [Advanced Theming](advanced/README.md)
 
