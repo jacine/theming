@@ -19,6 +19,6 @@
        * Regions and Your Theme
        * Using Regions vs. Hard-coding Variables in Template Files
        * Layout Strategies
-       * Exercise
+       * Exercise: Creating New Regions
 * [Advanced Theming](advanced/README.md)
 
