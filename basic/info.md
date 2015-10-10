@@ -152,9 +152,7 @@ With the exception of the core property, all of the above can be seen in the use
 
 ![Screenshot of custom theme on Appearance page](http://themery.com/sites/default/files/figure-15-7.png)
 
-## Exercise
-
-### Create Your First Theme
+## Exercise: Create Your First Theme
 
 Taking into account what you have learned so far, create a custom theme.
 
