@@ -16,5 +16,6 @@
        * Default Regions
        * Hidden Regions
        * Module-Specific Regions
+       * Regions and Your Theme
 * [Advanced Theming](advanced/README.md)
 
