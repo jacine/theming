@@ -9,5 +9,6 @@
        * Enabling and Setting a Default Theme
        * Administrative Theme
        * Global Theme Settings
+   * Defining Theme Metadata (.info Files)
 * [Advanced Theming](advanced/README.md)
 
