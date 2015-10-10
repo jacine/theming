@@ -12,6 +12,6 @@
        * Installing a New Theme
    * [Defining Theme Metadata (.info Files)](basic/info.md)
        * Exercise: Create Your First Theme
-   * Working with Regions
+   * [Working with Regions](basic/regions.md)
 * [Advanced Theming](advanced/README.md)
 
