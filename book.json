@@ -1,4 +1,6 @@
 {
+    "title": "Drupal Theme Development",
+    "description": "Port of The Definitive Guide to Drupal 7 theming chapters.",
     "plugins": [
         "prism",
         "-highlight"
