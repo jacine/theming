@@ -11,5 +11,6 @@
        * Global Theme Settings
        * Installing a New Theme
    * [Defining Theme Metadata (.info Files)](basic/info.md)
+       * Exercise
 * [Advanced Theming](advanced/README.md)
 
