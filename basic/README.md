@@ -1,4 +1,4 @@
-# Theming (basic)
+# Theming
 
 Drupal's theme layer, and the themes that use it, are responsible for the look and feel of a Drupal web site. Good themes consist of all the same elements that you would find on any reputable web site, including standards-compliant XHTML markup, CSS, and JavaScript. How it all comes together is what is so special and what makes Drupal themes so flexible and powerful.
 
