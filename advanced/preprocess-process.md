@@ -30,8 +30,6 @@ function template_preprocess_node(&$variables) {
   if ($variables['promote']) {
     $variables['classes_array'][] = 'node-promoted';
   }
-```  
-
   if ($variables['sticky']) {
     $variables['classes_array'][] = 'node-sticky';
   }
@@ -45,7 +43,7 @@ function template_preprocess_node(&$variables) {
     $variables['classes_array'][] = 'node-preview';
   }
  }
- ```
+```
 
 Once again, after `template_preprocess_node()` runs, all modules and themes have a chance to implement their own version, making any changes or additions they want. Once all the preprocess functions have completed, the process functions have their chance. In Drupal core, there are only two process implementations for nodes: `template_process()`, the default implementation, and `rdf_process()`, an implementation by the RDF module.
 
@@ -62,3 +60,78 @@ function template_process(&$variables, $hook) {
 Listings 16–1 through 16–3 illustrate some of the flexibility and power that Drupal provides with preprocess and process functions as well as the order in which these functions occur. The most important thing to understand is that in the theme layer, you've got the last call on all of these variables. You can easily add, modify, and remove any variables you please by simply implementing preprocess and process functions in your theme; this will be covered in more detail in the following pages.
 
 The big advantage of using preprocess functions is that they allow you to keep most of the logic outside of your template files. This allows for cleaner and easier to understand template files plus more efficient themes that are easier to maintain, manage, and extend over time. There are many changes you can make, such as affecting classes and modifying existing variables, that don't require any changes to template files at all — just a few simple lines of code.
+
+## Implementing Preprocess and Process Hooks
+
+Preprocess functions are implemented by creating a function that is named in a certain way. Listing 16–4 shows an example of this naming convention.
+
+**Listing 16–4**. Naming convention for preprocess and process hooks.
+
+```html
+<?php
+/**
+ * Implements template_preprocess_THEMEHOOK().
+ */
+function HOOK_preprocess_THEMEHOOK(&$variables) {
+  // Changes go here.
+}
+ 
+/**
+ * Implements template_process_THEMEHOOK().
+ */
+function HOOK_process_THEMEHOOK(&$variables) {
+  // Changes go here.
+}
+```
+
+There are four points to consider in naming these functions:
+
+1. The hook of a default implementation, usually created by a module, is "template". In all other implementations, the hook is replaced by the system name of the module or theme implementing it.
+2. Which stage of the process do you want to affect? There are two options: the preprocess, which runs first, or process, which runs after all of the preprocess functions have been executed.
+3. The theme hook matches the theme hook as defined in `hook_theme()`, which is ultimately output using either a theme function or a template file.
+4. The `&$variables` parameter contains data needed by the theme function or template file rendering it. Since preprocess functions run before templates are rendered, you can make all sorts of changes and additions to its contents.
+
+<blockquote><b>Caution:</b> By default, only theme hooks that have been explicitly defined in <code>hook_theme()</code> are able to use preprocess hooks. For example, <code>hook_preprocess_node()</code> is perfectly fine, but <code>hook_preprocess_node__article()</code> will not work. This is because <code>node__article</code> is a theme hook suggestion, which is a variation of a theme hook but is not actually a real theme hook.</blockquote>
+
+### Default Implementations
+
+Listing 16–5 illustrates what a preprocess implementation for a default theme hook looks like, using `template_preprocess_node()`, which creates variables for the `node.tpl.php` template file as an example. This function resides in `node.module` along with a `hook_theme()` implementation, `node_theme()`, where it defines "node" as a theme hook.
+
+**Listing 16–5**. Naming convention for default implementations of preprocess and process hooks.
+
+```html
+<?php
+function template_preprocess_node(&$variables) {
+  // Changes go here.
+  // See http://api.drupal.org/api/function/template_preprocess_node/7 for contents.
+}
+ 
+function template_process_node(&$variables) {
+  // Changes go here.
+  // See http://api.drupal.org/api/function/template_process_node/7 for contents.
+}
+```
+
+<blockquote><b>Tip:</b> Browsing <a href="http://api.drupal.org">http://api.drupal.org</a> and looking through the default implementations is a great way to learn how the variables were created.</blockquote>
+
+### Theme and Module Implementations
+
+Both modules and themes are able to use preprocess functions in the same way, and a given theme hook can have many preprocess implementations, originating from both modules and themes. This introduces the opportunity for conflicts to occur, so keeping that in mind and knowing the order in which these functions run is important. Preprocess implementations from modules run first, and implementations by themes run last. When dealing with base and subthemes, the base theme will run first and the subtheme will run last. A good way to remember this is that the active theme always wins.
+
+Preprocess functions implemented by Drupal core and modules reside in various files, such as `modulename.module` or `theme.inc`, and many others, while preprocess functions implemented by themes always reside in `template.php`.
+
+As an example, implement a preprocess function for a theme called "dgd7" for the node theme hook. As shown in Listing 16–6, you simply place a function in template.php beginning with the theme name (the implementing hook), followed by `_preprocess_` and the theme hook, which in this case is "node". Finally, you pass in the `&$variables parameter` by reference (the `&;` before the `$` indicates a variable being passed by reference).
+
+**Listing 16–6**. Implementation of `template_preprocess_node()` in a theme.
+
+```html
+<?php
+/**
+ * Implements template_process_node().
+ */
+function dgd7_preprocess_node(&$variables) {
+  // Changes go here.
+}
+```
+
+The code in Listing 16–6 is all that's needed, along with a quick cache clear, for Drupal to pick up your preprocess function and run it before rendering a node. Now the fun can begin!
