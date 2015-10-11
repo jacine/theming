@@ -69,4 +69,41 @@ Some observations of `$theme_hook_suggestions` include:
 
 The order in which these suggestions appear in the `$theme_hook_suggestions` variable determines which hook/template file will be used in FILO (first in, last out) order. When it comes time to render the template, the last suggestion will be used, with one exception. A variable called `$theme_hook_suggestion` (note that it is singular, not plural) is also available. If it's set by a module or theme, it will take precedence over anything defined in `$theme_hook_suggestions`.
 
-<blockquote><b>Tip:</b> Use the <code>dpm()</code> function (provided with the Devel module) inside the generic template file you are working with to find out what options are available. <code>&lt;?php dpm($theme_hook_suggestions); ?></code> will show the options that are available for the page you are working on.
+<blockquote><b>Tip:</b> Use the <code>dpm()</code> function (provided with the Devel module) inside the generic template file you are working with to find out what options are available. <code>&lt;?php dpm($theme_hook_suggestions); ?></code> will show the options that are available for the page you are working on.</blockquote>
+
+## Suggestions and Theme Functions    
+
+As explained in the "Suggestions and Template Files" section, alternate `$theme_hook_suggestions` are usually defined in the preprocess function for that hook. This works well because template files usually serve a specific purpose, like printing a specific entity such as a node or block. Theme functions, however, are much more diverse and end up being used within many different types of output, such as form elements, fields, and render elements. Module developers may also use theme functions to create one-off, custom content. This makes the prospect of implementing a theme function override of a widely used function such as `theme_links()` much less attractive, as it could potentially break styling in unexpected places all over your site.
+
+Luckily, theme hook suggestions also exist for many theme functions, and Drupal core has implemented suggestions for some of the popular theme functions, like `theme_links()`. Using theme hook suggestions with theme functions simply means that you can choose to override a theme function in a specific context as opposed to overriding the base theme function, which would have a site-wide effect.
+
+As mentioned, `theme_links()` is a good example of where to use theme hook suggestions when overriding theme functions. This theme function is used in many, many places, such as the main navigation, node, comment, and contextual links. Note that to implement the functions named in the "Theme function equivalent" column in Table 15–5, you need to replace THEME with the name of your theme in `template.php`.
+
+**Table 15–5**. Some example template suggestions for `theme_links()`.
+
+Suggestion | Theme Function Equivalent | Description
+:--------- | :------------------------ | :----------
+`links` | `THEME_links()` | Default implementation, which is used for all implementations unless a more specific implementation like those below is specified.
+`links__node` | `THEME_links__node()` | Targeted implementation of `theme_links()` that only applies to links lists inside of nodes.
+`links__comment` | `THEME_links__comment()` | Targeted implementation of `theme_links()` that only applies to links lists inside of comments.
+`links__contextual` | `THEME_links__contextual()` | Targeted implementation of `theme_links()` that only applies to links generated for contextual links.
+`links__contextual__node` | `THEME_links__contextual__node()` | Targeted implementation of `theme_links()` that only applies to contextual links inside of nodes.
+
+You'll notice in Drupal's default `page.tpl.php` file, located in the main and secondary menus are printed using suggestions. You might also notice that theme functions called `theme_links__system_main_menu()` and `theme_links__system_secondary_menu()` do not exist, and that's okay. In this case, the base hook, or the fallback, `theme_links()` will be used unless a more targeted theme function is created (see Listing 15–16).
+
+**Listing 15–16**. Excerpt from `modules/system/page.tpl.php`.
+
+```html
+<?php if ($main_menu || $secondary_menu): ?>
+  <div id="navigation">
+    <div class="section">
+      <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
+      <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Secondary menu'))); ?>
+    </div>
+  </div> <!-- /.section, /#navigation -->
+<?php endif; ?>
+```
+
+In this situation, the theme hook suggestions are hard-coded into the function arguments. When `theme()` processes this, it will check to see if an implementation of `theme_links__system_main_menu()` exists first. If the function is found, it will be used to render the content. If not, the original (or fallback) `theme_links()` will be used instead. `theme()` handles this automatically and can determine the base hook from the use of the double underscore that appears directly after it.
+
+<blockquote><b>Caution:</b> It's important to note that theme hook suggestions are NOT the same as theme hooks. Given what you've learned about theme hook suggestions, it's natural to think that preprocess and process functions can be written for the specific suggestion. Theme hooks, which are the default implementation and suggestion, are specifically registered in an implementation of <code>hook_theme()</code>. This means that you may create a preprocess function called <code>THEME_preprocess_page()</code> but you may not use <code>THEME_preprocess_page__front()</code>.</blockquote>
