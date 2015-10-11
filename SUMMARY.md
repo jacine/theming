@@ -11,4 +11,5 @@
    * [Theme Hooks and Suggestions](basic/hooks-suggestions.md)
    * [Summary](basic/summary.md)
 * [Advanced Theming](advanced/README.md)
+   * Finding Available Variables in the Theme Layer
 
