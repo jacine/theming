@@ -23,5 +23,6 @@
    * [Template Files](basic/template-files.md)
        * Common Core Templates
        * Overriding Template Files
+       * Global Template Variables
 * [Advanced Theming](advanced/README.md)
 
