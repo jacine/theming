@@ -34,3 +34,21 @@ A typical page on a Drupal site is essentially a big tree of nested template fil
 ![An illustrated screenshot of the Bartik theme which exposes the use of the major templates](http://themery.com/sites/default/files/figure-15-14.png)
 
 **Figure 15–14**. An example home page using the Bartik theme, which highlights the use of major template files and many custom regions.
+
+## Common Core Templates
+
+Drupal core contains over forty template files, but there are six major template files (described in Table 15–1) that are tasked with making up the majority of each page. These major template files are the ones you'll be working with most when writing Drupal themes and they will allow you do most of the heavy lifting in your theme.
+
+Table 15–1. Common Core Template Files
+
+Name | Origin | Purpose
+:--- | :----- | :------
+`html.tpl.php` | `modules/system` | Prints the structure of the HTML document, including the contents of `<head>` tags, e.g. $scripts, and $styles, as well as opening and closing `<body>` tags with `$page_top`, `$page` and `$page_bottom` regions printed inside. Unless you need to change the DOCTYPE, there's probably no reason to override this file.
+`page.tpl.php` | `modules/system` | Prints the page level regions and other hard-coded variables such as `$logo`, `$site_name`, `$tabs`, `$main_menu`, etc. Full control of the site layout is possible by manipulating this file, and most themes provide their own version of it.
+`region.tpl.php` | `modules/system` | Prints the HTML markup for regions.
+`block.tpl.php` | `modules/block` | Prints the HTML markup for blocks.
+`node.tpl.php` | `modules/node` | Prints the HTML markup for nodes.
+`comment.tpl.php` | `modules/comment` | Prints the HTML markup for comments.
+`field.tpl.php` | `modules/field/theme`* | Prints the HTML markup for fields. There are many different types of fields, and since this file needs to cover every case, its implementation is very general. If having semantic markup is important to you, you'll probably end up with a few versions of this template.
+
+<small>*<code>field.tpl.php</code> is used only when overridden by a theme. The one in <code>modules/field/theme</code> is only provided as a base for your work.</small>
