@@ -13,5 +13,5 @@
 * [Advanced Theming](advanced/README.md)
    * [Finding Available Variables in the Theme Layer](advanced/variables.md)
    * [Preprocess and Process Functions](advanced/preprocess-process.md)
-   * Using the Render API
+   * [Using the Render API](advanced/render.md)
 
