@@ -15,5 +15,5 @@
    * [Preprocess and Process Functions](advanced/preprocess-process.md)
    * [Using the Render API](advanced/render.md)
    * [Theming Forms](advanced/forms.md)
-   * [CSS](advanced/css.md)
+   * [Managing CSS Files](advanced/css.md)
 
