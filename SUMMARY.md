@@ -20,5 +20,6 @@
        * Using Regions vs. Hard-coding Variables in Template Files
        * Layout Strategies
        * Exercise: Creating New Regions
+   * Template Files
 * [Advanced Theming](advanced/README.md)
 
