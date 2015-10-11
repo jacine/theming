@@ -71,7 +71,7 @@ After following these three steps, Drupal will begin using the theme's version o
 
 Template files usually contain a few more variables than they actually print. In some cases there are many more. This is a great thing for theme developers because it opens up many possibilities for manipulating the display of markup without the need for much PHP knowledge. Table 15-2 describes some of the helpful variables available in all templates (with the exception of the attribute variables; these are covered section the "HTML Attributes" section). Identifying available variables is covered in detail in the next chapter.
 
-Table 15-2. Variables available in all templates
+**Table 15-2**. Variables available in all templates
 
 Variable | Description
 :------- | :----------
@@ -90,7 +90,7 @@ In Drupal 7, we began storing attributes in arrays. Part of the reason this was 
 
 Each of these variables, described in Table 15–3, has an array and string version. The array version, which contains the suffix `_array` in the variable name, is populated during various preprocess functions, such as `template_preprocess()` and `template_preprocess_node()` or `template_preprocess_block()`. Then, during the `template_process()` phase, new variables containing a flattened or string version of these arrays is created for use in templates. This process is illustrated in Figure 15–15. See the "Preprocess and Process Functions" section of this chapter for more details.
 
-Table 15–3. Pluggable HTML Attributes
+**Table 15–3**. Pluggable HTML Attributes
 
 Variable | Description
 :------- | :----------
