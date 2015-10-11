@@ -14,5 +14,5 @@
    * [Finding Available Variables in the Theme Layer](advanced/variables.md)
    * [Preprocess and Process Functions](advanced/preprocess-process.md)
    * [Using the Render API](advanced/render.md)
-   * Theming Forms
+   * [Theming Forms](advanced/forms.md)
 
