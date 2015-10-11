@@ -10,7 +10,7 @@ A good example of how Drupal uses preprocess and process functions is the `$clas
 
 **Listing 16–1**. Excerpt from `template_preprocess()` where `$classes_array` is defined.
 
-```html
+```php
 <?php
 function template_preprocess(&$variables, $hook) {
   // Initialize html class attribute for the current hook.
@@ -22,7 +22,7 @@ This first step provides a class indicating the hook that's being used. For exam
 
 **Listing 16–2**. Excerpt from `template_preprocess_node()` where additional classes are added to the `$classes_array` variable.
 
-```html
+```php
 <?php
 function template_preprocess_node(&$variables) {
   // Gather node classes.
@@ -49,7 +49,7 @@ Once again, after `template_preprocess_node()` runs, all modules and themes have
 
 In `template_process()`, after all the modules and themes have had a chance to modify it, a new variable called `$classes` is created. It contains a string version all of the classes provided in `$classes_array`. The `$classes` variable is printed in the class attribute of the wrapper `<div>` in the `node.tpl.php` template file. This is shown in Listing 16–3.
 
-```html
+```php
 <?php
 function template_process(&$variables, $hook) {
   // Flatten out classes.
@@ -67,7 +67,7 @@ Preprocess functions are implemented by creating a function that is named in a c
 
 **Listing 16–4**. Naming convention for preprocess and process hooks.
 
-```html
+```php
 <?php
 /**
  * Implements template_preprocess_THEMEHOOK().
@@ -99,7 +99,7 @@ Listing 16–5 illustrates what a preprocess implementation for a default theme 
 
 **Listing 16–5**. Naming convention for default implementations of preprocess and process hooks.
 
-```html
+```php
 <?php
 function template_preprocess_node(&$variables) {
   // Changes go here.
@@ -124,7 +124,7 @@ As an example, implement a preprocess function for a theme called "dgd7" for the
 
 **Listing 16–6**. Implementation of `template_preprocess_node()` in a theme.
 
-```html
+```php
 <?php
 /**
  * Implements template_process_node().
@@ -144,7 +144,7 @@ The first thing to do after creating the function is to print the array and find
 
 **Listing 16–7**. Printing variables to the screen for debugging purposes.
 
-```html
+```php
 <?php
 /**
  * Implements template_preprocess_node().
@@ -166,7 +166,7 @@ In the DGD7 theme at http://definitivedrupal.org, the header, sidebar, and foote
 
 **Listing 16–8**. Adding classes to the region wrapper `<div>` using the `$classes_array` variable in `template_preprocess_region()`.
 
-```html
+```php
 <?php
 /**
  * Implements template_preprocess_region().
@@ -222,7 +222,7 @@ Listing 16–10 demonstrates making three changes:
 
 **Listing 16–10**. Demonstrates making changes to the display of node content during preprocess.
 
-```html
+```php
 <?php
 /**
  * Implements template_preprocess_node().
@@ -252,7 +252,7 @@ As you've probably noticed by now, there are many variables available to you wit
 
 **Listing 16–11**. Creating a custom variable for the `user-picture.tpl.php` by implementing `template_preprocess_user_picture()`.
 
-```html
+```php
 <?php
 /**
  * Implements template_preprocess_user_picture().
