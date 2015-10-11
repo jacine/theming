@@ -30,6 +30,8 @@ function template_preprocess_node(&$variables) {
   if ($variables['promote']) {
     $variables['classes_array'][] = 'node-promoted';
   }
+```  
+
   if ($variables['sticky']) {
     $variables['classes_array'][] = 'node-sticky';
   }
