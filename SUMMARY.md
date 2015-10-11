@@ -21,5 +21,6 @@
        * Layout Strategies
        * Exercise: Creating New Regions
    * [Template Files](basic/template-files.md)
+       * Common Core Templates
 * [Advanced Theming](advanced/README.md)
 
