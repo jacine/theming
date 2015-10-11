@@ -12,4 +12,5 @@
    * [Summary](basic/summary.md)
 * [Advanced Theming](advanced/README.md)
    * [Finding Available Variables in the Theme Layer](advanced/variables.md)
+   * Preprocess and Process Functions
 
