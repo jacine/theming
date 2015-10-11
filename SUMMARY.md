@@ -9,6 +9,6 @@
    * [Template Files](basic/template-files.md)
    * [Theme Functions](basic/theme-functions.md)
    * [Theme Hooks and Theme Hook Suggestions](basic/hooks-suggestions.md)
-   * Summary
+   * [Summary](basic/summary.md)
 * [Advanced Theming](advanced/README.md)
 
