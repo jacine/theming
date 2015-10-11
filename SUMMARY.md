@@ -7,6 +7,6 @@
    * [Defining Theme Metadata (.info Files)](basic/info.md)
    * [Working with Regions](basic/regions.md)
    * [Template Files](basic/template-files.md)
-   * Theme Functions
+   * [Theme Functions](basic/theme-functions.md)
 * [Advanced Theming](advanced/README.md)
 
