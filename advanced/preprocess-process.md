@@ -135,3 +135,157 @@ function dgd7_preprocess_node(&$variables) {
 ```
 
 The code in Listing 16–6 is all that's needed, along with a quick cache clear, for Drupal to pick up your preprocess function and run it before rendering a node. Now the fun can begin!
+
+## Finding the Contents of $variables
+
+The contents of the `$variables` array are different for each theme hook; even the contents of the same theme hook vary based on other factors, such as the view mode or user role.
+
+The first thing to do after creating the function is to print the array and find out what's inside for you to work with. As explained in the "Finding Available Variables in the Theme Layer" section, using the `dpm()` function is a great way to do this, as shown in Listing 16–7.
+
+**Listing 16–7**. Printing variables to the screen for debugging purposes.
+
+```html
+<?php
+/**
+ * Implements template_preprocess_node().
+ */
+function dgd7_preprocess_node(&$variables) {
+  dpm($variables);
+}
+```
+
+<blockquote><b>Caution</b> Debugging functions should only be used temporarily during development.</blockquote>
+
+## Preprocess Functions in Action
+
+There are so many things you can change using preprocess functions that we can't possibly get into all of them. Now that you've got your preprocess function all set up and are aware of how to view existing variables, you are equipped with enough knowledge to start making some changes. Let's just jump right in and get started with a few practical examples of how to use preprocess functions.
+
+### Add Classes to Template Wrappers
+
+In the DGD7 theme at http://definitivedrupal.org, the header, sidebar, and footer areas are black and the content area is white. In order to style the contents of each of those sections more easily, you can add a couple of helper classes to the region wrapper. To do this, you'll need to implement a preprocess function for the region theme hook in your template.php file; see Listing 16–8.
+
+**Listing 16–8**. Adding classes to the region wrapper `<div>` using the `$classes_array` variable in `template_preprocess_region()`.
+
+```html
+<?php
+/**
+ * Implements template_preprocess_region().
+ */
+function dgd7_preprocess_region(&$variables) {
+  $region = $variables['region'];
+ 
+  // Sidebars and content area need a good class to style against. You should
+  // not be using id's like #main or #main-wrapper to style contents.
+  if (in_array($region, array('sidebar_first', 'sidebar_second', 'content'))) {
+    $variables['classes_array'][] = 'main';
+  }
+  // Add a "clearfix" class to certain regions to clear floated elements inside them.
+  if (in_array($region, array('footer', 'help', 'highlight'))) {
+    $variables['classes_array'][] = 'clearfix';
+  }
+  // Add an "outer" class to the darker regions.
+  if (in_array($region, array('header', 'footer', 'sidebar_first', 'sidebar_second'))) {
+    $variables['classes_array'][] = 'outer';
+  }
+}
+```
+
+`$variables['classes_array']` turns into `$class` in the process phase, and the class(es) added during preprocess are automatically modified as a result. So, just like that you've added a class to a region wrapper `<div>`.
+
+The alternative in template files is lengthier. Adding logic to each affected template file would be required, which means you'd need to override the file, even if you didn't need to change the markup. If you have multiple template files for regions, the change would have to be made manually across all of them, which is clearly less efficient as you can see in Listing 16–9.
+
+**Listing 16–9**. Adding classes in preprocess functions can dramatically increase the efficiency of your CSS code.
+
+```css
+/* Using classes and ID's provided by default. */
+#header fieldset,
+#footer fieldset,
+.sidebar fieldset {
+  border-color: #333;
+}
+ 
+/* Using the class added in Listing 16–8, which is more efficient. */ 
+.outer fieldset {
+  border-color: #333;
+}
+```
+
+<blockquote><b>Tip:</b> This example changes classes for the region template, but this technique can be applied to any of the major templates, including `html.tpl.php`, `block.tpl.php`, `node.tpl.php` and `comment.tpl.php` in their respective preprocess functions.</blockquote>
+
+### Making Changes to Nodes
+
+Listing 16–10 demonstrates making three changes:
+
+1. Drupal's page title prints in `page.tpl.php`. When a node title prints inside of the `node.tpl.php` file, it's usually because it's being viewed in teaser mode, and therefore, the node title is marked up with an `<h2>` by default. Usually, the content inside the node body also contains one or more `<h2>` tags. Adding a class to single out the node title can make styling easier. Listing 16–10 utilizes the `$title_attributes_array` to add a `node-title` class to help make styling easier.
+2. When viewing a node that has a comment form directly under the node links, it doesn't make much sense to have an "Add new comment" link as well. In Listing 16–10, the comment links are hidden when the comment form is below it by using the `hide()` function, which will be covered in more detail later in this chapter.
+3. Designs often call for differences when viewing the teaser of a node versus the full page. Listing 16–10 demonstrates using `$variables['teaser']` to suppress the `$submitted` information and truncate the node title to 70 characters when viewing in teaser mode.
+
+**Listing 16–10**. Demonstrates making changes to the display of node content during preprocess.
+
+```html
+<?php
+/**
+ * Implements template_preprocess_node().
+ */
+function dgd7_preprocess_node(&$variables) {
+  // Give the <h2> containing the teaser node title a better class.
+  $variables['title_attributes_array']['class'][] = 'node-title';
+ 
+  // Remove the "Add new comment" link when the form is below it.
+  if (!empty($variables['content']['comments']['comment_form'])) {
+    hide($variables['content']['links']['comment']);
+  }
+ 
+  // Make some changes when in teaser mode.
+  if ($variables['teaser']) {
+    // Don't display author or date information.
+    $variables['display_submitted'] = FALSE;
+    // Trim the node title and append an ellipsis.
+    $variables['title'] = truncate_utf8($variables['title'], 70, TRUE, TRUE);
+  } 
+}
+```
+
+### Add a Change Picture Link Underneath the User Photo
+
+As you've probably noticed by now, there are many variables available to you within the $variables array. These variables can be used to create new variables very easily. You know the path to edit a user profile is `user/UID/edit`, so you can use the information inside of `$variables` to determine whether or not the user viewing the page is the account holder. Once you've determined this, you can easily create a variable containing a link for the user to edit the photo everywhere it appears on the site by implementing `template_preprocess_user_picture()`, as shown in Listing 16–11. Once you do this, you'll be able to print it in the corresponding template, `user-picture.tpl.php`, as shown in Listing 16–12.
+
+**Listing 16–11**. Creating a custom variable for the `user-picture.tpl.php` by implementing `template_preprocess_user_picture()`.
+
+```html
+<?php
+/**
+ * Implements template_preprocess_user_picture().
+ * - Add "change picture" link to be placed underneath the user image.
+ */
+function dgd7_preprocess_user_picture(&$variables) {
+  // Create a variable with an empty string to prevent PHP notices when
+  // attempting to print the variable.
+  $variables['edit_picture'] = '';
+ 
+  // The account object contains the information of the user whose photo is
+  // being processed. Compare that to the user id of the user object which    
+  // represents the currently logged in user.
+  if ($variables['account']->uid == $variables['user']->uid) {
+    // Create a variable containing a link to the user profile, with a class
+    // "change-user-picture" to style against with CSS.
+    $variables['edit_picture'] = l('Change picture', 'user/' . $vars['account']->uid . '/edit',
+      array(
+        'fragment' => 'edit-picture',
+        'attributes' => array('class' => array('change-user-picture')),
+      )
+    ); 
+  }
+}
+```
+
+**Listing 16–12**. Printing your custom variable into the `user-picture.tpl.php` file, which you've copied into your theme to override.
+
+```html
+<?php if ($user_picture): ?>
+  <div class="user-picture">
+    <?php print $user_picture; ?>
+    <?php print $edit_picture; ?>
+  </div>
+<?php endif; ?>
+```
