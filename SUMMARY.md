@@ -16,4 +16,5 @@
    * [Using the Render API](advanced/render.md)
    * [Theming Forms](advanced/forms.md)
    * [Managing CSS Files](advanced/css.md)
+   * Working with Base and Subthemes
 
