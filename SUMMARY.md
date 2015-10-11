@@ -8,6 +8,6 @@
    * [Working with Regions](basic/regions.md)
    * [Template Files](basic/template-files.md)
    * [Theme Functions](basic/theme-functions.md)
-   * Theme Hooks and Theme Hook Suggestions
+   * [Theme Hooks and Theme Hook Suggestions](basic/hooks-suggestions.md)
 * [Advanced Theming](advanced/README.md)
 
