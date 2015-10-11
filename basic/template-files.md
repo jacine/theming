@@ -33,4 +33,4 @@ A typical page on a Drupal site is essentially a big tree of nested template fil
 
 ![An illustrated screenshot of the Bartik theme which exposes the use of the major templates](http://themery.com/sites/default/files/figure-15-14.png)
 
-**Figure 15–14**. An example home page using the Bartik theme, which highlights the use of major template files and many custom regions
+**Figure 15–14**. An example home page using the Bartik theme, which highlights the use of major template files and many custom regions.
