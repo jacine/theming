@@ -1,10 +1,3 @@
-**On this page:**
-
-1. How Theme Functions are Created
-2. Calling Theme Functions
-3. Overriding Theme Functions
-4. Exercise: Let's Override a Theme Function
-
 # Theme Functions
 
 The purpose of a theme function is the same as a template file in that its goal is to provide HTML markup in a way that makes it customizable by themes (and modules, too). There are many, many theme functions in Drupal core, from form elements to menu items to full administration page implementations. For a full list of theme functions available in Drupal 7, visit http://api.drupal.org/api/group/themeable/7.
