@@ -204,7 +204,7 @@ There are quite a few render array variables scattered across core templates tha
 Variable | Found In | Alter Hook | Description
 :------- | :------- | :--------- | :----------
 `$page` | `page.tpl.php` | `hook_page_alter()` | Contains the entire page from regions down to fields and comments.
-`$content` | `node.tpl.php`, `comment.tpl.php`, `taxonomy-term.tpl.php`, `hook_node_view_alter()`, `hook_comment_view_alter()`, `hook_taxonomy_term_view_alter()` | Contains the contents of each entity. For more details see http://api.drupal.org/hook_entity_view_alter.
+`$content` | `node.tpl.php`, `comment.tpl.php`, `taxonomy-term.tpl.php` | `hook_node_view_alter()`, `hook_comment_view_alter()`, `hook_taxonomy_term_view_alter()` | Contains the contents of each entity. For more details see http://api.drupal.org/hook_entity_view_alter.
 `$tabs` | `page.tpl.php` | `hook_menu_local_tasks_alter()` | Contains primary and secondary tabs, themable via `theme_menu_local_tasks()` and `theme_menu_local_task()`.
 `$action_links` | `page.tpl.php` | `hook_menu_local_tasks_alter()` | Contains action links, themable via `theme_menu_local_actions()`.
 `$item` | `field.tpl.php` | `hook_field_display_alter()` and `hook_field_display_ENTITY_TYPE_alter()` | Contains display settings for fields, which can adjust label settings or control the formatter used to display the contents of `field.tpl.php`.
