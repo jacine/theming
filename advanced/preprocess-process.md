@@ -248,7 +248,7 @@ function dgd7_preprocess_node(&$variables) {
 
 ### Add a Change Picture Link Underneath the User Photo
 
-As you've probably noticed by now, there are many variables available to you within the $variables array. These variables can be used to create new variables very easily. You know the path to edit a user profile is `user/UID/edit`, so you can use the information inside of `$variables` to determine whether or not the user viewing the page is the account holder. Once you've determined this, you can easily create a variable containing a link for the user to edit the photo everywhere it appears on the site by implementing `template_preprocess_user_picture()`, as shown in Listing 16–11. Once you do this, you'll be able to print it in the corresponding template, `user-picture.tpl.php`, as shown in Listing 16–12.
+As you've probably noticed by now, there are many variables available to you within the `$variables` array. These variables can be used to create new variables very easily. You know the path to edit a user profile is `user/UID/edit`, so you can use the information inside of `$variables` to determine whether or not the user viewing the page is the account holder. Once you've determined this, you can easily create a variable containing a link for the user to edit the photo everywhere it appears on the site by implementing `template_preprocess_user_picture()`, as shown in Listing 16–11. Once you do this, you'll be able to print it in the corresponding template, `user-picture.tpl.php`, as shown in Listing 16–12.
 
 **Listing 16–11**. Creating a custom variable for the `user-picture.tpl.php` by implementing `template_preprocess_user_picture()`.
 
