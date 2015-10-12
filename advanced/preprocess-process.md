@@ -210,7 +210,7 @@ The alternative in template files is lengthier. Adding logic to each affected te
 }
 ```
 
-<blockquote><b>Tip:</b> This example changes classes for the region template, but this technique can be applied to any of the major templates, including `html.tpl.php`, `block.tpl.php`, `node.tpl.php` and `comment.tpl.php` in their respective preprocess functions.</blockquote>
+<blockquote><b>Tip:</b> This example changes classes for the region template, but this technique can be applied to any of the major templates, including <code>html.tpl.php</code>, <code>block.tpl.php</code>, <code>node.tpl.php</code> and <code>comment.tpl.php</code> in their respective preprocess functions.</blockquote>
 
 ### Making Changes to Nodes
 
