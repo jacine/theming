@@ -14,7 +14,7 @@ As mentioned, Drupal has many style sheets. Of course, you want to keep the numb
 
 Drupal aggregates files in two ways: it creates a per-site aggregation file from files that would be loaded on every page, and it creates a per-page aggregation files for the remaining files that are conditionally loaded depending on the page. For CSS files, it further aggregates by media type. To remain correct, if the contents of CSS and JavaScript files are changed, when the site cache is cleared Drupal will regenerate the aggregated versions of the files and give them a different name. Enabling aggregation and compression for CSS files on all live sites is highly recommended, as it will speed up page loads quite a bit. This process is very effective and allows themers and developers to continue developing sites in a modular manner, without having to worry about the number of CSS files.
 
-<blockquote><b>Caution</b> Do NOT use the <code>@import</code> directive to load CSS files manually within Drupal. Doing so will cause performance and possible aggregation issues when combined with <code><link></code> style sheets and will cause the files to be excluded from override features.</blockquote>
+<blockquote><b>Caution</b> Do NOT use the <code>@import</code> directive to load CSS files manually within Drupal. Doing so will cause performance and possible aggregation issues when combined with <code>&lt;link&gt;</code>'ed style sheets and will cause the files to be excluded from override features.</blockquote>
 
 ## Patterns and Naming Conventions
 
