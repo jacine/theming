@@ -63,6 +63,10 @@ You are reading chapters 15 and 16 on Theme Development originally published in 
     - [Adding, Removing, and Replacing CSS Files](advanced/css.md#adding-removing-and-replacing-css-files)
     - [Exercise](advanced/css.md#exercise-managing-style-sheets-in-your-theme)
 6. [Working with Base and Subthemes](advanced/base-themes.md)
-7. [Sustainability and Best Practices](advanced/best-practices.md)
+    - [Creating a Subtheme](advanced/base-themes.md#creating-a-subtheme)
+    - [Inheritance and How it Works](advanced/base-themes.md#inheritance-and-how-it-works)
+    - [Finding a Good Base Theme](advanced/base-themes.md#finding-a-good-base-theme)
+    - [Tips for Creating Your Own Base Themes](advanced/base-themes.md#tips-for-creating-your-own-base-themes)
+7. [Sustainability and Best Practices](advanced/best-practices.md#sustainability-and-best-practices)
 8. [Summary](advanced/summary.md)
 
