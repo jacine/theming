@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
    * [Table of Contents](toc.md)
+   * License
 * [Theming](basic/README.md)
    * [The Core Themes Directory](basic/core-themes.md)
    * [Theme Administration](basic/theme-administration.md)
